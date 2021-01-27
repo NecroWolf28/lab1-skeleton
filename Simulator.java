@@ -5,7 +5,7 @@ public class Simulator {
 
   public Simulator(Simulation simulation) {
     events = new PriorityQueue<Event>();
-    for (Event e : simulation.initialEvents()) {
+    for (Event e : simulation.getInitialEvents()) {
        events.add(e);
     }
   }

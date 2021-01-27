@@ -22,7 +22,7 @@ class ShopSimulation extends Simulation {
     }
   }
 
-  public Event[] initialEvents() {
+  public Event[] getInitialEvents() {
     return initEvents;
   }
 }
