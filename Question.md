@@ -201,8 +201,8 @@ apply the OO principles such as abstraction, encapsulation
 (including information hiding and tell-don't-ask), composition,
 inheritance, polymorphism, and LSP.
 
-Rewrite these two classes with the OOP principles that you have
-learned.
+Rewrite these two classes (adding new ones as needed) with the 
+OOP principles that you have learned:
 
 - encapsulation to group relevant fields and methods into
   new classes
