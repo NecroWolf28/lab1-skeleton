@@ -31,7 +31,7 @@ between the classes
 - using polymorphism to make the code more succinct and
 extendable in the future, while adhering to LSP
 
-Here and some hints:
+Here are some hints:
 
 - Think about the problem that you are solving: what are
 the nouns? These are good candidates for new classes.  
@@ -102,17 +102,19 @@ In Lab 1, we wish to simulate a shop.  A shop can have
 one or more service counters.  
 
 At the beginning, all service counters are available.
-A counter becomes not unavaialble when it is serving
-a customer, and becomes available again after service.
+A counter becomes unavaialble when it is serving
+a customer, and becomes available again after servicing
+a customer.
 
-Customer arrives at the shop go to the first available 
-counters for service.  If none of the counters is 
-available, the customer departs (Due to COVID-19, there 
-is no waiting). After being served for a given amount 
-of time (called service time), the customer departs.
+A customer, upon arrival at the shop, looks for the first
+available counters for service.  If no counter is available,
+the customer departs (due to COVID-19, no waiting is allowed).
+Otherwise, the customer is served, and after being served for
+a given amount of time (called service time), the customer
+departs.
 
-Two classes, `ShopSimulation` (subclass of Simulation)
-and `ShopEvent` (subclass of Event) are provided.  The
+Two classes, `ShopSimulation` (a subclass of Simulation)
+and `ShopEvent` (a subclass of Event) are provided.  The
 two classes implement the simulation above.
 
 ## The `Event` class
@@ -123,7 +125,8 @@ your info only.
 The `Event` class is an abstract class with a single
 field `time`, that indicates the time the event occurs.
 The `Event::toString` method returns the time as a 
-string.  
+string and the `Event::getTime` method returns the
+time.
 
 The most important thing to know about `Event` class
 is that it has an abstract method `simulate` that 
@@ -139,10 +142,9 @@ instances.
 You do not need to edit this class.  The following is for
 your info only.
 
-The `Simulation` class is an abstract class with a 
-single method `initialEvents`, which returns an array
-of events to simulate.  Each of these events may 
-generate more events.
+The `Simulation` class is an abstract class with a single
+method `getInitialEvents`, which returns an array of events
+to simulate.  Each of these events may generate more events.
 
 ## The `Simulator` class
 
@@ -162,13 +164,13 @@ new Simulator(sim).run();
 The `Simulation::run` method simply does not the following:
 
 - It gets the list of initial `Event` objects from the
-  `Simulation`;
+  `Simulation` object;
 - It then simulates the pool of events, one-by-one in the
   order of increasing time, by calling `Event::simulate`;
 - If simulating an event resulted in one or more new events,
   the new events are added to the pool.
-- For each event simulated, `Event::toString` is called and
-  a message is printed
+- Before each event is simulated, `Event::toString` is called 
+  and a message is printed
 - The simulation stops running if there is no more events to
   simulate.
 
@@ -183,24 +185,30 @@ a `Simulation`.  This class is responsible for:
 
 - reading the inputs from the standard inputs,
 
-- initialize the servers (represented with boolean
+- initialize the service counters (represented with boolean
   `available` arrays)
 
 - initialize the events corresponding to customer arrivals
 
 - return the list of customer arrival events to the
-  `Simulator` object when `initialEvent` is called.
+  `Simulator` object when `getInitialEvent` is called.
+
+Each customer has an id.  The first customer has id 0, 
+next one is 1, and so on.
+
+Each counter has an id, numbered from 0, 1, 2, onwards.
 
 This class is not properly written with encapsulations.
 Rewrite it with the OOP principles that you have learned,
 keeping in mind that in future labs we will model more 
-complicated shop, server, and customer behavior.
+complex behavior for the shop, the counters, and the 
+customers.
 
 ## The `ShopEvent` class
 
 The `ShopEvent` class is a concrete implementation of
 `Event`.  This class overides the `simulate` method to
-simulate the customer and server behavior. 
+simulate the customer and counter behavior. 
 
 A `ShopEvent` instance can be tagged as either an
 arrival event, service-begin event, service-end event,
@@ -208,28 +216,35 @@ or departure event.
 
 - Arrival: the customer arrives.  It finds the first
   available service counter (scanning from id 0 upwards) and
-  go to the counter for service immediately.  A
-  service-begin event is generated.  If no counter is
-  available, it departs.  A departure event is generated.
+  go to the counter for service immediately.  A service-begin
+  event is generated.  If no counter is available, it departs.
+  A departure event is generated.
 
 - Service begin: the customer is being served.  A
-  service-end event scheduled at time (current time + service 
+  service-end event scheduled at time (current time + service
   time) is generated.
 
-- Service end: the customer is done being served and will
-  depart.  A departure event is generated.
+- Service end: the customer is done being served and departs
+  immediately.  A departure event is generated.
 
 - Departure: the customer departs.
 
 ## Inputs and Outputs
 
-The main program `Lab1.java` reads the following, from the standard inputs.
+The main program `Lab1.java` reads the following, from the
+standard inputs.
 
 - An integer n, indicating the number of customers to simulate.
-- An integer k, indicating the number of service counters the shop has.
-- n pairs double values, each pair corresponds to a customer.  The first value indicates the arrival time, the second indicates the service time.
+- An integer k, indicating the number of service counters 
+  the shop has.
+- n pairs double values, each pair corresponds to a customer.  
+  The first value indicates the arrival time, the second indicates 
+  the service time for the customer.
 
 The customers are sorted in increasing order of arrival time.  
 
-You can assume that no two events ever occur at the same time.
+## Assumptions
 
+You can assume that no two events ever occur at the same time.
+As per all labs, you can assume that the input is correctly
+formatted.
