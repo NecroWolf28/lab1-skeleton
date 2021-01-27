@@ -1,7 +1,7 @@
 /**
  * This class encapsulates an event in the shop
- * simulation.  Your task is to rewrite this
- * class following proper OOP principles.
+ * simulation.  Your task is to replace this
+ * class with new classes, following proper OOP principles.
  *
  * @author Wei Tsang
  * @version CS2030S AY20/21 Semester 2
@@ -41,7 +41,7 @@ class ShopEvent extends Event {
    */
   public int counterId;
 
-  /**
+  /*
    * Different types of events.  This should be 
    * implemented as enum, but we have not cover 
    * that yet.
