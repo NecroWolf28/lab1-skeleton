@@ -67,24 +67,24 @@ class ShopEvent extends Event {
       }
       if (counter == -1) {
         return new Event[] { 
-          new ShopEvent(ShopEvent.DEPARTURE, this.time, this.customerId)
+          new ShopEvent(ShopEvent.DEPARTURE, this.getTime(), this.customerId)
         };
       } else {
         return new Event[] { 
-          new ShopEvent(ShopEvent.SERVICE_BEGIN, this.time, this.customerId, this.serviceTime, counter, this.available)
+          new ShopEvent(ShopEvent.SERVICE_BEGIN, this.getTime(), this.customerId, this.serviceTime, counter, this.available)
         };
       }
     }
     else if (this.eventType == ShopEvent.SERVICE_BEGIN) {
       available[this.counterId] = false;
       return new Event[] { 
-        new ShopEvent(ShopEvent.SERVICE_END, this.time + this.serviceTime, this.customerId, this.counterId, this.available)
+        new ShopEvent(ShopEvent.SERVICE_END, this.getTime() + this.serviceTime, this.customerId, this.counterId, this.available)
       };
     }
     else if (this.eventType == ShopEvent.SERVICE_END) {
       available[this.counterId] = true;
       return new Event[] { 
-        new ShopEvent(ShopEvent.DEPARTURE, this.time, this.customerId),
+        new ShopEvent(ShopEvent.DEPARTURE, this.getTime(), this.customerId),
       };
     }
     else if (this.eventType == ShopEvent.DEPARTURE) {
