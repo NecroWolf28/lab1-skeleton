@@ -27,7 +27,7 @@ class ShopSimulation extends Simulation {
    *           sequence of (arrival time, service time) pair, each
    *           pair represents a customer.
    */
-  ShopSimulation(Scanner sc) {
+  public ShopSimulation(Scanner sc) {
     initEvents = new Event[sc.nextInt()];
     int numOfCounters = sc.nextInt();
 
