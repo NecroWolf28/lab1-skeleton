@@ -17,7 +17,7 @@ abstract class Event implements Comparable<Event> {
   private final double time;
 
   /**
-   * Creates an event that occurs at the given time
+   * Creates an event that occurs at the given time.
    *
    * @param time The time the event occurs.
    */
@@ -38,8 +38,9 @@ abstract class Event implements Comparable<Event> {
    * Compare this event with a given event e.
    *
    * @param e The other event to compare to.
-   * @return 1 if this event occurs later than e; 0 if they occur the same time; -1 if this event
-   *     occurs earlier.
+   * @return 1 if this event occurs later than e; 
+   *         0 if they occur the same time; 
+   *         -1 if this event occurs earlier.
    */
   @Override
   public int compareTo(Event e) {
@@ -59,7 +60,7 @@ abstract class Event implements Comparable<Event> {
    */
   @Override
   public String toString() {
-    return String.format("%.3f", time);
+    return String.format("%.3f", this.time);
   }
 
   /**

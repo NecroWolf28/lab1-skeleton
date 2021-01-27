@@ -13,7 +13,8 @@ abstract class Simulation {
    * used to initialize the simulation.
    *
    * @return An array of initial events that the 
-   * simulator can use to kick-start the simulation.
+   *         simulator can use to kick-start the 
+   *         simulation.
    */
-  abstract public Event[] getInitialEvents();
+  public abstract Event[] getInitialEvents();
 }

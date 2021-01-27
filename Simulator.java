@@ -18,13 +18,13 @@ public class Simulator {
    * a simulation as an argument, and calls the 
    * getInitialEvents method of that simulation to
    * initialize the event queue.
-   * 
+   *
    * @param simulation The simulation to simulate.
    */
   public Simulator(Simulation simulation) {
-    events = new PriorityQueue<Event>();
+    this.events = new PriorityQueue<Event>();
     for (Event e : simulation.getInitialEvents()) {
-       events.add(e);
+      this.events.add(e);
     }
   }
 
@@ -42,7 +42,7 @@ public class Simulator {
       System.out.println(event);
       Event[] newEvents = event.simulate();
       for (Event e : newEvents) {
-        events.add(e);
+        this.events.add(e);
       }
       event = this.events.poll();
     }
