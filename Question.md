@@ -101,8 +101,8 @@ initialize it with a `Simulation` instance, and then call
 `run`:
 
 ``` 
-Simulation sim = new SomeSimulation(); new
-Simulator(sim).run(); 
+Simulation sim = new SomeSimulation(); 
+new Simulator(sim).run(); 
 ```
 
 The `Simulation::run` method simply does the following:
