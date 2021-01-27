@@ -1,7 +1,7 @@
 # Lab 1: Simulation I
 
 - Deadline: 1 February 2021, Monday, 23:59 SST
-- Marks: 30
+- Marks: 3%
 
 ## Prerequisite:
 
